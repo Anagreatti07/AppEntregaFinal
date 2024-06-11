@@ -6,18 +6,20 @@ function AuthProvider({ children }) {
     const [logado, setLogado] = useState(false);
     const [error, setError] = useState(false);
 
-    async function Login(email, senha) {
+    async function Login(usuarioEmail, usuarioSenha) {
+   
 
-        if (email != "" && senha != "") {
-            await fetch('https://fakestoreapi.com/auth/login', {
+        if (usuarioEmail != "" && usuarioSenha != "") {
+            await fetch('http://10.139.75.22:5251/api/Usuarios/GetAllUsuarios',{
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: email,
-                    password: senha
+                    usuarioEmail: usuarioEmail,
+                    usuarioSenha: usuarioSenha,
                 })
+                
             })
                 .then(res => (res.ok == true) ? res.json() : false)
                 .then(json => {
@@ -29,10 +31,11 @@ function AuthProvider({ children }) {
         } else {
             setError(true)
         }
+        
     }
 
     return (
-        <AuthContext.Provider value={{ logado: logado, Login, error: error }}>
+        <AuthContext.Provider value={{ logado: logado, Login, error: error, Error }}>
             {children}
         </AuthContext.Provider>
     )

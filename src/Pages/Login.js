@@ -4,25 +4,24 @@ import { AuthContext } from '../Context/AuthContext';
 
 export default function Login() {
 
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-
+    const [usuarioEmail, setUsuarioEmail] = useState("");
+    const [usuarioSenha, setUsuarioSenha] = useState("");
     const { Login, error } = useContext(AuthContext);
 
     function RealizaLogin() {
-       Login( email, senha );
+       Login( usuarioEmail, usuarioSenha );
     }
 
 
     return (
         <ScrollView contentContainerStyle={css.container}>
-            <Image source={require("../../assets/logo.png")} style={css.logo} />
+            <Image source={require("../../assets/logonovo.png")} style={css.logo} />
             <TextInput
                 inputMode="email"
                 placeholder="Email"
                 style={css.input}
-                value={email}
-                onChangeText={(digitado) => setEmail(digitado)}
+                value={usuarioEmail}
+                onChangeText={(digitado) => setUsuarioEmail(digitado)}
                 placeholderTextColor="white"
             />
             <TextInput
@@ -30,8 +29,8 @@ export default function Login() {
                 placeholder="Password"
                 secureTextEntry={true}
                 style={css.input}
-                value={senha}
-                onChangeText={(digitado) => setSenha(digitado)}
+                value={usuarioSenha}
+                onChangeText={(digitado) => setUsuarioSenha(digitado)}
                 placeholderTextColor="white"
             />
             <View style={css.forgot}>
@@ -45,7 +44,7 @@ export default function Login() {
                     <Text style={css.errorText}>Revise os campos. Tente novamente!</Text>
                 </View>
             }
-        </ScrollView>
+        </ScrollView>   
     )
 }
 const css = StyleSheet.create({
@@ -58,7 +57,8 @@ const css = StyleSheet.create({
         backgroundColor: "#191919"
     },
     logo: {
-        width: "60%",
+        width: "40%",
+        alignItems:"center",
         resizeMode: "contain"
     },
     input: {
@@ -77,7 +77,7 @@ const css = StyleSheet.create({
         alignItems: "flex-end",
     },
     forgotText: {
-        color: "#0195fd",
+        color: "#18448F",
         fontWeight: "bold"
     },
     btnLogin: {
@@ -86,7 +86,7 @@ const css = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         marginTop: 30,
-        backgroundColor: "#0195fd"
+        backgroundColor: "#18448F",
     },
     btnLoginText: {
         color: "white",
