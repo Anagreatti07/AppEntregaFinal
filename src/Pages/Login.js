@@ -1,17 +1,18 @@
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image, Button } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext';
 
-export default function Login() {
 
-    const [usuarioEmail, setUsuarioEmail] = useState("");
-    const [usuarioSenha, setUsuarioSenha] = useState("");
-    const { Login, error } = useContext(AuthContext);
+export default function Login({ }) {
+
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
+    const { Login, error, setCadastro } = useContext(AuthContext);
 
     function RealizaLogin() {
-       Login( usuarioEmail, usuarioSenha );
+       Login(email, senha);
     }
-
 
     return (
         <ScrollView contentContainerStyle={css.container}>
@@ -20,33 +21,37 @@ export default function Login() {
                 inputMode="email"
                 placeholder="Email"
                 style={css.input}
-                value={usuarioEmail}
-                onChangeText={(digitado) => setUsuarioEmail(digitado)}
-                placeholderTextColor="white"
+                value={email}
+                onChangeText={(digitado) => setEmail(digitado)}
+                placeholderTextColor="lightgray"
             />
             <TextInput
                 inputMode="text"
                 placeholder="Password"
                 secureTextEntry={true}
                 style={css.input}
-                value={usuarioSenha}
-                onChangeText={(digitado) => setUsuarioSenha(digitado)}
-                placeholderTextColor="white"
+                value={senha}
+                onChangeText={(digitado) => setSenha(digitado)}
+                placeholderTextColor="lightgray"
             />
             <View style={css.forgot}>
                 <Text style={css.forgotText}>Esqueceu a senha?</Text>
             </View>
             <TouchableOpacity style={css.btnLogin} onPress={RealizaLogin}>
-                <Text style={css.btnLoginText}>Log In</Text>
+                <Text style={css.btnLoginText}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={css.btnCadastro} onPress={ () => setCadastro( true ) }>
+                <Text style={css.btnCadastroText}>Cadastre-se</Text>
             </TouchableOpacity>
             {error &&
                 <View style={css.error}>
                     <Text style={css.errorText}>Revise os campos. Tente novamente!</Text>
                 </View>
             }
-        </ScrollView>   
+        </ScrollView>
     )
 }
+
 const css = StyleSheet.create({
     container: {
         flexGrow: 1,
@@ -54,11 +59,11 @@ const css = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignContent: "center",
-        backgroundColor: "#191919"
+        backgroundColor: "white"
     },
     logo: {
-        width: "40%",
-        alignItems:"center",
+        width: "100%",
+        height: "40%",
         resizeMode: "contain"
     },
     input: {
@@ -67,7 +72,7 @@ const css = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 15,
         padding: 15,
-        backgroundColor: "#262626",
+        backgroundColor: "#18448F",
         color: "white"
     },
     forgot: {
@@ -77,7 +82,7 @@ const css = StyleSheet.create({
         alignItems: "flex-end",
     },
     forgotText: {
-        color: "#18448F",
+        color: "gray",
         fontWeight: "bold"
     },
     btnLogin: {
@@ -86,7 +91,7 @@ const css = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         marginTop: 30,
-        backgroundColor: "#18448F",
+        backgroundColor: "gray"
     },
     btnLoginText: {
         color: "white",
@@ -103,5 +108,15 @@ const css = StyleSheet.create({
     errorText: {
         color: "white",
         textAlign: "center"
+    },
+    btnCadastro: {
+        width: "90%",
+        marginTop: 10,
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+    },
+    btnCadastroText: {
+        color: "#717165",
+        fontWeight: "bold"
     }
 });
