@@ -40,6 +40,7 @@ export default function Objeto({ navigation, objetoId, objetoNome, objetoFoto, o
                 <Image source={{ uri: objetoFoto }} style={css.imagem} />
             </View>
             <Button title="Detalhes" onPress={toggleDetalhes} />
+            <Button title="Observação"  />
             
            
             

@@ -232,14 +232,14 @@ const css = StyleSheet.create({
   btnDelete: {
     width: "70%",
     height: 50,
-    backgroundColor: "red",
+    backgroundColor: "#18448F",
     borderRadius: 5,
     marginBottom: 10
   },
   btnEdit: {
     width: "70%",
     height: 50,
-    backgroundColor: "#4B0082",
+    backgroundColor: "#EBE609",
     borderRadius: 5,
     marginBottom: 10,
   },
